@@ -189,6 +189,7 @@ export const housesData = [
   },
   {
     id: 7,
+    category : 'sell',
     type: 'Apartment',
     name: 'Apartment 1',
     description:
@@ -210,6 +211,7 @@ export const housesData = [
   },
   {
     id: 8,
+    category : 'rent',
     type: 'Apartment',
     name: 'Apartment 2',
     description:
@@ -231,7 +233,7 @@ export const housesData = [
   },
   {
     id: 9,
-    type: 'Apartament',
+    type: 'Apartment',
     category : 'sell',
     name: 'Apartament 3',
     description:
@@ -604,10 +606,10 @@ export const housesData = [
     },
   },
   {
-    id: 25,
+    id: 26,
     category : 'rent',
     type: 'Apartment',
-    name: 'Apartment 24',
+    name: 'Apartment 26',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, illoat. Repudiandae ratione impedit delectus consectetur. Aspernaturvero obcaecati placeat ab distinctio unde ipsam molestias atqueratione delectus blanditiis nemo eius dignissimos doloremque quaealiquid maiores id tempore consequatur, quod pariatur saepe.',
     image: Apartment6,
@@ -626,10 +628,10 @@ export const housesData = [
     },
   },
   {
-    id: 26,
+    id: 27,
     category : 'rent',
     type: 'Apartment',
-    name: 'Apartment 25',
+    name: 'Apartment 28',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, illoat. Repudiandae ratione impedit delectus consectetur. Aspernaturvero obcaecati placeat ab distinctio unde ipsam molestias atqueratione delectus blanditiis nemo eius dignissimos doloremque quaealiquid maiores id tempore consequatur, quod pariatur saepe.',
     image: Apartment6,

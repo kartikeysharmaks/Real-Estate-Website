@@ -66,25 +66,20 @@ const HouseContextProvider = ({ children }) => {
 
     // get first string (price) and parse it to number
     const minPrice = parseInt(price.split(" ")[0]);
+    console.log(minPrice);
     // get last string (price) and parse it to number
     const maxPrice = parseInt(price.split(" ")[2]);
+    console.log(maxPrice);
 
     const newHouses = housesData.filter((house) => {
       const housePrice = parseInt(house.price);
+
+      //4 pairs combinations
+
       // all values are selected
-      if (
-        house.country === country &&
-        house.category === category &&
-        house.type === property &&
-        housePrice >= minPrice &&
-        housePrice <= maxPrice
-      ) {
+      if (!isDefault(category) && !isDefault(property) && !isDefault(country) && !isDefault(price)) {
         if (housePrice >= minPrice && housePrice <= maxPrice) {
-          return (
-            house.category === category &&
-            house.country === country &&
-            house.property === property
-          );
+          return  house.category === category && house.country === country && house.type === property;
         }
       }
       // all values are default
@@ -96,7 +91,10 @@ const HouseContextProvider = ({ children }) => {
       ) {
         return house;
       }
-      // category is not default
+
+      //single(1) pair combinations
+
+      // category is not default (category is selected)
       if (
         !isDefault(category) &&
         isDefault(country) &&
@@ -105,50 +103,50 @@ const HouseContextProvider = ({ children }) => {
       ) {
         return house.category === category;
       }
-      // country is not default
-      if (!isDefault(country) && isDefault(property) && isDefault(price)) {
+      // country is not default (country is selected)
+      if (!isDefault(country) && isDefault(property) && isDefault(price) && isDefault(category)) {
         return house.country === country;
       }
-      // property is not default
-      if (!isDefault(property) && isDefault(country) && isDefault(price)) {
+      // property is not default (property is selected)
+      if (!isDefault(property) && isDefault(country) && isDefault(price) && isDefault(category)) {
         return house.type === property;
       }
-      // price is not default
-      if (!isDefault(price) && isDefault(country) && isDefault(property)) {
+      // price is not default (price is selected)
+      if (!isDefault(price) && isDefault(country) && isDefault(property) && isDefault(category)) {
         if (housePrice >= minPrice && housePrice <= maxPrice) {
           return house;
         }
       }
-      // category and property is not default
-      if (
-        !isDefault(category) &&
-        !isDefault(property) &&
-        isDefault(price) &&
-        isDefault(country)
-      ) {
-        return house.country === country && house.type === property;
+
+      //3 pairs combinations
+
+       //only price is default (country, property and category is selected)
+       if (isDefault(price) && !isDefault(country) && !isDefault(property) && !isDefault(category)) {
+        return house.country === country && house.type === property && house.category === category;
       }
-      // category and country is not default
-      if (
-        !isDefault(category) &&
-        !isDefault(country) &&
-        isDefault(price) &&
-        isDefault(property)
-      ) {
-        return house.country === country && house.type === property;
+       //only country is default (category, property and price is selected)
+       if (!isDefault(price) && isDefault(country) && !isDefault(property) && !isDefault(category)) {
+        if (housePrice >= minPrice && housePrice <= maxPrice) {
+          return house.type === property && house.category === category;
+        }
       }
-      // category and price is not default
-      if (
-        !isDefault(category) &&
-        !isDefault(price) &&
-        isDefault(country) &&
-        isDefault(country)
-      ) {
-        return house.country === country && house.type === property;
+       //only property is default (country, category and price is selected)
+       if (!isDefault(price) && !isDefault(country) && isDefault(property) && !isDefault(category)) {
+        if (housePrice >= minPrice && housePrice <= maxPrice) {
+          return house.country === country && house.category === category;
+        }
+      }
+       //only category is default (country, property and price is selected)
+       if (!isDefault(price) && !isDefault(country) && !isDefault(property) && isDefault(category)) {
+        if (housePrice >= minPrice && housePrice <= maxPrice) {
+          return house.type === property && house.country === country;
+        }
       }
 
-      // country and property is not default
-      if (
+       //2 pairs combinations
+
+       // country and property is not default (country and property is selected)
+       if (
         !isDefault(country) &&
         !isDefault(property) &&
         isDefault(price) &&
@@ -156,7 +154,37 @@ const HouseContextProvider = ({ children }) => {
       ) {
         return house.country === country && house.type === property;
       }
-      // country and price is not default
+      // category and property is not default (category and property is selected)
+      if (
+        !isDefault(category) &&
+        !isDefault(property) &&
+        isDefault(price) &&
+        isDefault(country)
+      ) {
+        return house.category === category && house.type === property;
+      }
+      // category and country is not default (category and country is selected)
+      if (
+        !isDefault(category) &&
+        !isDefault(country) &&
+        isDefault(price) &&
+        isDefault(property)
+      ) {
+        return house.country === country && house.category === category;
+      }
+
+       // category and price is not default (category and price is selected)
+       if (
+        !isDefault(category) &&
+        !isDefault(price) &&
+        isDefault(country) &&
+        isDefault(property)
+      ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.category === category;
+          }
+      }
+      // country and price is not default (country and price is selected)
       if (
         !isDefault(country) &&
         isDefault(property) &&
@@ -167,7 +195,7 @@ const HouseContextProvider = ({ children }) => {
           return house.country === country;
         }
       }
-      // property and price is not default
+      // property and price is not default (property and price is selected)
       if (
         isDefault(country) &&
         !isDefault(property) &&
