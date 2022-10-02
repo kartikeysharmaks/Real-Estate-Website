@@ -32,7 +32,7 @@ const Header = () => {
           </Link>
         </div>
         <div
-          className="flex flex-col sm:hidden bg-violet-400 hover:bg-violet-500 text-white px-4 py-3 rounded-lg transition"
+          className="flex flex-col sm:hidden bg-violet-400 hover:bg-violet-500 text-white px-4 py-3 rounded-lg transition cursor-pointer"
           onClick={() => setShowMenu((prev) => !prev)}
         >
           {showMenu ? (
