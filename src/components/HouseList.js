@@ -24,7 +24,7 @@ const HouseList = () => {
         Sorry, nothing was found.
       </div>
     );
-  }
+  };
 
   return (
     <section className='mb-20'>
